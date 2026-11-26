@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portofolio | Jelita Putri</title>
+
+<style>
+
+/* GENERAL */
+* { box-sizing: border-box; } 
+body { margin: 0; font-family: 'Trebuchet MS', Arial, sans-serif; background-color: #FFF8F0; color: #45523B;}
+
+/* HEADER */
+header { background: linear-gradient(135deg, #A8BD8A, #D6E3BD); text-align: center; padding: 55px 20px; color: #405333; border-radius: 0 0 45px 45px; position: relative; }
+header h1 { font-size: 95px; margin: 0; letter-spacing: 1px; }
+header p { color: #566A43; font-size: 15px; }
+.decor { font-size: 30px; margin-bottom: 12px; }
+
+/* SEARCH BAR */
+.search-box { display: flex; align-items: center; max-width: 400px; margin: 25px auto 0; background: #FFFFFF; padding: 6px; border-radius: 30px; box-shadow: 0 4px 12px rgba(80, 90, 60, 0.12); }
+.search-box input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; padding: 12px 15px; color: #45523B; font-family: inherit; font-size: 13px; }
+.search-box input::placeholder { color: #A18D80; }
+.search-box button { border: none; background: #EBA4AB; color: white; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; font-size: 17px; transition: 0.3s; }
+.search-box button:hover { background: #D7828D; transform: scale(1.08); }
+.search-message { font-size: 12px; color: #FFF8F0; margin-top: 10px; min-height: 15px; }
+
+/* SECTION UMUM */
+section { max-width: 720px; margin: 28px auto; padding: 28px; background: #FFFFFF; border-radius: 22px; box-shadow: 0 5px 20px rgba(107, 125, 78, 0.10); }
+h2 { color: #77965A; text-align: center; margin-top: 0; font-size: 25px; }
+.subtitle { color: #A18D80; text-align: center; line-height: 1.7; font-size: 16px; }
+
+
+/* PROFIL */
+.profile { text-align: center; }
+
+/* FOTO CAROUSEL */
+.profile-gallery { width: 155px; margin: 0 auto 15px; position: relative; }
+.profile-carousel { width: 100%; overflow: hidden; border-radius: 50%; cursor: grab; touch-action: pan-y; user-select: none; }
+.profile-carousel:active { cursor: grabbing; }
+.profile-track { display: flex; transition: transform 0.4s ease; }
+.profile-track img { display: block; flex: 0 0 100%; width: 100%; height: 155px; object-fit: cover; object-position: center; border-radius: 50%; border: 6px solid #F5B5BB; padding: 4px; background: #FFF0F0; pointer-events: none; }
+
+/* TOMBOL FOTO */
+.photo-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px; }
+.photo-btn { width: 25px; height: 25px; border: none; border-radius: 50%; background: #FCE5E6; color: #C66F7B; cursor: pointer; transition: 0.3s; }
+.photo-btn:hover { background: #F5B5BB; transform: scale(1.15); }
+.photo-dots { display: flex; gap: 6px; }
+.photo-dot { width: 7px; height: 7px; border-radius: 50%; background: #E8D5D5; cursor: pointer; transition: 0.3s; }
+.photo-dot.active { background: #D7828D; width: 17px; border-radius: 10px; }
+
+/* INFORMASI PROFIL */
+.profile h2 { color: #77965A; margin-bottom: 10px; text-align: center; }
+.profile p { line-height: 1.9; color: #746D63; text-align: center; }
+
+/* LABEL */
+.tag { display: inline-block; background: #FCE5E6; color: #C66F7B; padding: 7px 15px; border-radius: 30px; font-size: 12px; margin: 5px; }
+
+/* AKADEMIK */
+.skill { padding: 18px; margin: 18px 0; border-radius: 16px; background: #F5F8EF; border-left: 5px solid #A3B987; }
+.skill:nth-of-type(even) { background: #FFF1F1; border-left-color: #E9A0A8; }
+.skill h3 { margin-top: 0; color: #78945E; }
+.skill p { color: #786F66; line-height: 1.7; font-size: 14px; }
+.bar { height: 10px; background: #E5EBD9; border-radius: 20px; overflow: hidden; }
+.fill { height: 100%; background: linear-gradient(90deg, #A5BE83, #D4A9A4); border-radius: 20px; }
+
+/* PROJECT */
+.project { padding: 20px; margin: 20px 0; background: #F5F8EF; border-radius: 17px; border: 1px solid #E5EBD9; }
+.project:nth-of-type(even) { background: #FFF1F1; border-color: #F5DDDF; }
+.category { color: #D17F89; font-size: 12px; font-weight: bold; letter-spacing: 1px;}
+.project h3 { color: #647D4D; }
+.project p { line-height: 1.8; color: #746D63; font-size: 14px; }
+.btn { display: inline-block; background: #EBA4AB; color: white; padding: 11px 18px; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 5px; }
+.btn:hover { background: #D7828D; }
+
+/* KONTAK */
+.contact { background: #647C50; color: white; text-align: center;}
+.contact h2 { color: #FFF3E8; font-size: 28px; }
+.contact p { color: #E5EBD9; line-height: 1.8; }
+.contact-btn { display: block; padding: 15px; margin: 14px 0; border-radius: 14px; text-decoration: none; color: white; font-weight: bold; background: #D88F98; transition: 0.3s; }
+.contact-btn:nth-of-type(2) { background: #A9BD87; }
+.contact-btn:nth-of-type(3) { background: #B88F80; }
+.contact-btn span { display: block; font-size: 12px; font-weight: normal; margin-top: 5px; }
+.contact-btn:hover { transform: translateY(-3px); opacity: 0.9;}
+
+/* FOOTER */
+footer { background: #F1DDD5; color: #806D60; text-align: center; padding: 22px; font-size: 13px; border-radius: 25px 25px 0 0; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) { header h1 { font-size: 29px; } section { margin: 18px 13px; padding: 22px 18px; } .profile-gallery { width: 135px; } .profile-track img { height: 135px; } .search-box { max-width: 320px; } }
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header id="home">
+<div class="decor">🍓 ୨୧ 🍵</div>
+<h1>PORTOFOLIO</h1>
+<p>Student | Future Architect</p>
+
+<!-- SEARCH BAR -->
+<form class="search-box" id="searchForm">
+<input type="search" id="searchInput" placeholder="Search section... (e.g. Academic Skills)" autocomplete="off"a> 
+<button type="submit" aria-label="Search"> 🍓 </button>
+</form>
+<div class="search-message" id="searchMessage"></div>
+</header>
+
+<!-- PROFIL -->
+<section class="profile" id="profile">
+
+<!-- FOTO PROFIL CAROUSEL -->
+<div class="profile-gallery">
+<div class="profile-carousel" id="profileCarousel">
+<div class="profile-track" id="profileTrack">
+
+<!-- FOTO PERTAMA -->
+<img src="Pacar James.jpg" alt="Foto profil Jelita">
+
+<!-- FOTO KEDUA -->
+<img src="Pacar James 2.jpg" alt="Foto kedua Jelita">
+</div>
+</div>
+
+        <!-- TOMBOL SLIDE FOTO -->
+
+        <div class="photo-controls">
+
+            <button
+                class="photo-btn"
+                id="prevPhoto"
+                type="button"
+                aria-label="Foto sebelumnya"
+            >
+                ❮
+            </button>
+
+            <div class="photo-dots" id="photoDots"></div>
+
+            <button
+                class="photo-btn"
+                id="nextPhoto"
+                type="button"
+                aria-label="Foto berikutnya"
+            >
+                ❯
+            </button>
+
+        </div>
+
+    </div>
+
+<h2>JELITA PUTRI</h2>
+<div>
+<span class="tag">Student</span>
+<span class="tag">Intelligent</span>
+<span class="tag">Creative</span>
+</div>
+<p> Halo! Saya Jelita Putri, seorang pelajar dengan harapan suatu hari dapat menjadi bagian dari dunia Architecture. </p>
+</section>
+
+<!-- KEMAMPUAN AKADEMIK -->
+<section id="skills">
+<h2>ꕤ ACADEMIC SKILLS ꕤ</h2>
+<p class="subtitle"> Mata pelajaran yang saya pelajari dan kembangkan di Sekolah Menengah Atas (SMA). </p>
+
+<div class="skill">
+<h3>🧮 MATEMATIKA</h3>
+<p> Mampu memahami konsep matematika, melakukan perhitungan, dan menyelesaikan soal. </p>
+<div class="bar">
+<div class="fill" style="width:95%"></div>
+</div>
+<p>Contoh penguasaan: 95%</p>
+</div>
+  
+<div class="skill">
+<h3>📚 FISIKA</h3>
+<p> Mampu memahami konsep dan menerapkan rumus, serta menganalisis dan menyelesaikan permasalahan fisika dengan baik. </p>
+<div class="bar">
+<div class="fill" style="width:90%"></div>
+</div>
+<p>Contoh penguasaan: 90%</p>
+</div>
+
+<div class="skill">
+<h3>🎨 SENI BUDAYA</h3>
+<p> Mampu memahami fungsi dan makna suatu karya serta mampu menciptakan karya. </p>
+<div class="bar">
+<div class="fill" style="width:95%"></div>
+</div>
+<p>Contoh penguasaan: 95%</p>
+</div>
+</section>
+
+<!-- PROYEK DAN KARYA -->
+<section id="projects">
+<h2>ꕤ PROYEK-KARYA ꕤ</h2>
+<p class="subtitle"> Berikut proyek dan karya yang saya kerjakan selama belajar di Sekolah Menengah Atas (SMA). </p>
+
+<div class="project">
+<p class="category">BAHASA INGGRIS</p>
+<h3>SERTIFIKAT BAHASA</h3>
+<p> Memperoleh level B2 pada test Cambridge English Qualification (CEQ) </p>
+<p> <b>Skills:</b> Reading comprehension, writing skills, listening comprehension, speaking skills </p>
+<a href="1.html" class="btn"> Lihat Proyek </a>
+</div>
+  
+<div class="project">
+<p class="category">SENI BUDAYA</p>
+<h3>PEMENTASAN TEATER KELAS (PTK)</h3>
+<p> Membuat properti serta mempertimbangkan tiap tata letak properti. </p>
+<p> <b>Skills: </b> Kreatifitas, tata ruang, dan estetika. </p>
+<a href="2.html" class="btn"> Lihat Proyek </a>
+</div>
+
+<div class="project">
+<p class="category">MATEMATIKA</p>
+<h3>PENELITIAN</h3>
+<p> Membuat penelitian berjudul "The Power of Gaze". </p>
+<p> <b>Skills:</b> Riset, kerja sama, dan komunikasi. </p>
+<a href="3.html" class="btn"> Lihat Proyek </a>
+</div>
+</section>
+
+<!-- KONTAK -->
+<section class="contact" id="contact">
+<div class="decor">🍓 🍵 🍓</div>
+<h2>LET'S GET IN TOUCH!</h2>
+<p> Terima kasih sudah mengunjungi portofolio saya. Mari terhubung dan berbagi ide bersama! </p>
+
+<a href="https://wa.me/6281288958256" target="_blank" rel="noopener noreferrer" class="contact-btn"> 💬 WhatsApp <span>Chat langsung dengan saya</span> </a>
+<a href="https://www.instagram.com/jlitaptr/" target="_blank" rel="noopener noreferrer" class="contact-btn"> 📸 Instagram <span>Lihat aktivitas dan karya saya</span> </a>
+<a href="mailto:jelita2972009@gmail.com" class="contact-btn"> ✉️ Email <span>Kirim pesan melalui email</span> </a>
+
+<p style="font-size:12px; margin-top:25px;"> Made with ♡ and a little strawberry matcha! </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p> © 2026 Jelita Putri <br> Made with HTML & CSS </p>
+</footer>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+/* SEARCH BAR */
+
+// Daftar section dan kata kunci pencarian
+
+const searchTargets = [
+
+    {
+        id: "home",
+        keywords: ["home", "beranda", "portofolio", "portfolio"]
+    },
+
+    {
+        id: "profile",
+        keywords: ["profile", "profil", "about", "about me", "jelita"]
+    },
+
+    {
+        id: "skills",
+        keywords: [
+            "academic skills",
+            "skills",
+            "akademik",
+            "kemampuan akademik",
+            "mata pelajaran"
+        ]
+    },
+
+    {
+        id: "projects",
+        keywords: ["projects", "project", "proyek", "karya", "proyek karya"]
+    },
+
+    {
+        id: "contact",
+        keywords: ["contact", "kontak", "whatsapp", "instagram", "email"]
+    }
+
+];
+
+
+const searchForm = document.getElementById("searchForm");
+
+const searchInput = document.getElementById("searchInput");
+
+const searchMessage = document.getElementById("searchMessage");
+
+
+searchForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const keyword = searchInput.value.toLowerCase().trim();
+
+    let targetSection = "";
+
+
+    // Memeriksa kata kunci pencarian
+
+    for (let i = 0; i < searchTargets.length; i++) {
+
+        const currentTarget = searchTargets[i];
+
+        for (let j = 0; j < currentTarget.keywords.length; j++) {
+
+            const currentKeyword = currentTarget.keywords[j];
+
+            if (
+                currentKeyword.includes(keyword) ||
+                keyword.includes(currentKeyword)
+            ) {
+
+                if (keyword !== "") {
+                    targetSection = currentTarget.id;
+                    break;
+                }
+
+            }
+
+        }
+
+        if (targetSection !== "") {
+            break;
+        }
+
+    }
+
+
+    // Jika section ditemukan
+
+    if (targetSection !== "") {
+
+        document.getElementById(targetSection).scrollIntoView({
+            behavior: "smooth"
+        });
+
+        searchMessage.textContent = "🍓 Section found!";
+
+    }
+
+    // Jika section tidak ditemukan
+
+    else {
+
+        searchMessage.textContent =
+            "Section tidak ditemukan. Coba kata kunci lain!";
+
+    }
+
+});
+
+
+/* =================================
+   2. FOTO PROFIL CAROUSEL
+================================= */
+
+const profileTrack = document.getElementById("profileTrack");
+
+const profileCarousel = document.getElementById("profileCarousel");
+
+const profileImages = profileTrack.querySelectorAll("img");
+
+const photoDots = document.getElementById("photoDots");
+
+let currentPhoto = 0;
+
+
+// Membuat indikator foto
+
+for (let i = 0; i < profileImages.length; i++) {
+
+    const dot = document.createElement("span");
+
+    dot.classList.add("photo-dot");
+
+    if (i === 0) {
+        dot.classList.add("active");
+    }
+
+    dot.addEventListener("click", function() {
+
+        currentPhoto = i;
+
+        updatePhoto();
+
+    });
+
+    photoDots.appendChild(dot);
+
+}
+
+
+function updatePhoto() {
+
+    profileTrack.style.transform =
+        "translateX(-" + (currentPhoto * 100) + "%)";
+
+    const dots = photoDots.querySelectorAll(".photo-dot");
+
+    for (let i = 0; i < dots.length; i++) {
+
+        if (i === currentPhoto) {
+            dots[i].classList.add("active");
+        } else {
+            dots[i].classList.remove("active");
+        }
+
+    }
+
+}
+
+
+// Tombol foto berikutnya
+
+document.getElementById("nextPhoto").addEventListener("click", function() {
+
+    currentPhoto = (currentPhoto + 1) % profileImages.length;
+
+    updatePhoto();
+
+});
+
+
+// Tombol foto sebelumnya
+
+document.getElementById("prevPhoto").addEventListener("click", function() {
+
+    currentPhoto =
+        (currentPhoto - 1 + profileImages.length) % profileImages.length;
+
+    updatePhoto();
+
+});
+
+
+// Swipe foto menggunakan jari atau mouse
+
+let startX = 0;
+
+let endX = 0;
+
+let isDragging = false;
+
+
+profileCarousel.addEventListener("pointerdown", function(event) {
+
+    startX = event.clientX;
+
+    isDragging = true;
+
+});
+
+
+profileCarousel.addEventListener("pointerup", function(event) {
+
+    if (!isDragging) {
+        return;
+    }
+
+    endX = event.clientX;
+
+    const distance = endX - startX;
+
+
+    // Geser ke kiri
+
+    if (distance < -40) {
+
+        currentPhoto =
+            (currentPhoto + 1) % profileImages.length;
+
+    }
+
+    // Geser ke kanan
+
+    else if (distance > 40) {
+
+        currentPhoto =
+            (currentPhoto - 1 + profileImages.length)
+            % profileImages.length;
+
+    }
+
+
+    isDragging = false;
+
+    updatePhoto();
+
+});
+
+
+profileCarousel.addEventListener("pointercancel", function() {
+
+    isDragging = false;
+
+});
+
+
+</script>
+
+</body>
+</html>
